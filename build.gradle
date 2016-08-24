@@ -1,0 +1,74 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.5.2'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+    ext {
+        applicationID = 'com.sfyc23.gankDaily'
+        minSdkVersion = 15
+        targetSdkVersion = 22
+
+        versionCode = 1
+        versionName = "1.0"
+
+
+        CHANNEL_VALUE = "dubug"
+
+        //正式release打包1
+        PRINT_LOG_VALUE = "false"
+        SCHEDULER_DEBUG_VALUE = "false"
+        PLATFORM_VERSION_VALUE = "v14"
+        PLATFORM_TEST_VALUE = "false"
+        PLATFORM_DEBUG_VALUE = "false"
+        PLATFORM_ENCRYPT_VALUE = "true"
+
+        //debug 模式下打包
+        DEBUG_PRINT_LOG_VALUE = "true"
+        //使用正式服务器还是测试服务器，true 表示使用测试服务器
+        DEBUG_SCHEDULER_DEBUG_VALUE = "true"
+        //资源包版本号
+        DEBUG_PLATFORM_VERSION_VALUE = "v14"
+
+        //定义上值的Debug或release环境
+        DEBUG_PLATFORM_DEBUG_VALUE = "false"
+        //是否需要加密
+        DEBUG_PLATFORM_ENCRYPT_VALUE = "true"
+
+//        因为没有测试环境。dubug与zhouyang一致。
+        debug_filestore = "../build-system/sfyc23.keystore"
+        debug_storePassword = "sfyc23"
+        debug_keyAlias = "sfyc23"
+        debug_keyPassword = "sfyc23"
+
+        release_filestore = "../build-system/sfyc23.keystore"
+        release_storePassword = "sfyc23"
+        release_keyAlias = "sfyc23"
+        release_keyPassword = "sfyc23"
+
+    }
+}
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()//appIntro
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

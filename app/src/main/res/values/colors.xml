@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <color name="primary">#03A9F4</color>
+    <color name="primary_dark">#0288D1</color>
+    <color name="primary_light">#B3E5FC</color>
+    <color name="accent">#448AFF</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+
+
+
+
+    <color name="primary_super_dark">#11261c</color> <!-- same hue & sat, 15% brightness -->
+
+    <color name="windowBackground">#fafafa</color>
+
+    <color name="status_view_text_color">#c1c1c1</color>
+
+    <!-- Common colors -->
+    <color name="transparent">#00000000</color><!-- 透明色 -->
+
+    <color name="translucent">#a0000000</color><!-- 半透明 -->
+    <color name="white">#ffffff</color>   <!-- 纯白色 -->
+    <color name="photo_press">#f2f2f2</color>   <!-- 照相机-->
+    <color name="black">#000000</color>
+    <color name="blue">#0000FF</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="teal">#008080</color>
+    <color name="red">#e4593f</color>
+    <color name="pink">#FF8992</color><!-- 粉色 -->
+    <color name="gray">#cfEEEEEE</color>
+
+    <color name="about_header_background">@color/pink</color>
+
+</resources>

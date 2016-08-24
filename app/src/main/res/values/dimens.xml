@@ -1,0 +1,11 @@
+<resources>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="about_header_height">232dp</dimen>
+    <dimen name="about_card_margin">8dp</dimen>
+
+    <dimen name="avatar_size">38dp</dimen>
+    <dimen name="open_source_lis_text_size">13sp</dimen>
+</resources>

@@ -7,9 +7,6 @@ import com.sfyc23.gankDaily.base.utils.LogUtil;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
-//import cn.gandalf.clientlog.LogUtil;
-
-
 public class ActivityHelper {
 	private static final String TAG = "ActivityHelper";
 

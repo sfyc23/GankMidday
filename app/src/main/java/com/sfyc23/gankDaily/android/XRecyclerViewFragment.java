@@ -62,14 +62,21 @@ public abstract class XRecyclerViewFragment <T> extends BaseListFragment {
             }
         });
         mRecyclerView.setLoadingMoreEnabled(isHaveLoadMore());
+        isPrepared = true;
     }
+
     public boolean isHaveLoadMore() {
         return true;
     }
 
     @Override
     protected void getData() {
+//        mStatusView.showLoading();
+//        loadData();
+    }
 
+    @Override
+    protected void lazyLoad() {
         mStatusView.showLoading();
         loadData();
     }
@@ -84,7 +91,8 @@ public abstract class XRecyclerViewFragment <T> extends BaseListFragment {
     @SuppressWarnings("deprecation")
     @Override
     protected void onDataSuccessReceived(final String result) {
-        LogUtil.i(TAG, "onDataSuccessReceived ="+result);
+//        LogUtil.i(TAG, "onDataSuccessReceived ="+result);
+        LogUtil.Json(result);
         if (!StringUtils.isEmpty(result)) {
             Observable
                     .create(new Observable.OnSubscribe<List<T>>() {
@@ -115,7 +123,7 @@ public abstract class XRecyclerViewFragment <T> extends BaseListFragment {
                             } else {
                                 mAdapter.addAll(list);
                             }
-
+                            mHasLoadedOnce = true;
                             if (mCurrentAction != ACTION_PRE_LOAD) loadComplete();
                             mStatusView.showContent();
                         }

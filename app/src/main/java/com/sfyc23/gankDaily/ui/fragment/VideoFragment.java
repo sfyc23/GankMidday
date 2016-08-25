@@ -31,6 +31,9 @@ public class VideoFragment extends XRecyclerViewFragment<GanHuoDataBean> {
         return fragment;
     }
 
+
+
+
     @Override
     protected String getUrl(int mCurrentPageIndex) {
 //        mType = getArguments().getString("type");
@@ -77,4 +80,5 @@ public class VideoFragment extends XRecyclerViewFragment<GanHuoDataBean> {
     protected RecyclerView.LayoutManager setLayoutManager() {
         return new LinearLayoutManager(mContext);
     }
+
 }

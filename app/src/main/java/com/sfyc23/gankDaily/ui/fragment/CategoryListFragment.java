@@ -24,13 +24,25 @@ import java.util.List;
  */
 public class CategoryListFragment extends XRecyclerViewFragment<GanHuoDataBean> {
     private String mType;
+    private boolean mBeginLoad;
 
-    public static CategoryListFragment newInstance(String type) {
+    public static CategoryListFragment newInstance(String type,boolean beginLoad) {
         CategoryListFragment fragment = new CategoryListFragment();
         Bundle bundle = new Bundle();
         bundle.putString("type", type);
+        bundle.putBoolean("beginLoad",beginLoad);
+
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+    @Override
+    protected void getData() {
+        mBeginLoad = getArguments().getBoolean("beginLoad");
+        if(mBeginLoad){
+            mStatusView.showLoading();
+            loadData();
+        }
     }
 
     @Override

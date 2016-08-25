@@ -13,11 +13,13 @@ import rx.Subscriber;
 /**
  * Created by leilei on 2016/8/22.
  */
-public abstract class BaseListFragment<T> extends BaseFragment{
+public abstract class BaseListFragment<T> extends BaseLazyFragment{
 
     protected static final int ACTION_REFRESH = 1;//刷新
     protected static final int ACTION_LOAD_MORE = 2;//加载更多
     protected static final int ACTION_PRE_LOAD = 3;//预加载数据
+
+
 
     protected CommonRvAdapter<T> mAdapter;
 
@@ -28,6 +30,8 @@ public abstract class BaseListFragment<T> extends BaseFragment{
     protected void loadAdapter() {
         mAdapter = setAdapter();
     }
+
+
 
     /**
      * load data(obtain data from local if no network)
@@ -129,4 +133,6 @@ public abstract class BaseListFragment<T> extends BaseFragment{
     protected abstract RecyclerView.LayoutManager setLayoutManager();
 
     protected abstract void loadComplete();
+
+
 }

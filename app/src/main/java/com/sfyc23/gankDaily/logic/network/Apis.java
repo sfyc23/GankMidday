@@ -18,8 +18,8 @@ import java.util.List;
  */
 public class Apis {
 
-    public static String[] GanHuoCateGory = new String[]{"all", "Android", "iOS", "拓展资源", "前端", "瞎推荐"};
-
+//    public static String[] GanHuoCateGory = new String[]{"all", "Android", "iOS", "拓展资源", "前端", "瞎推荐"};
+    public static String[] GanHuoCateGory = new String[]{"Android", "iOS", "拓展资源", "前端", "瞎推荐"};
     public static List<String> getGanHuoCateGory() {
 
         List<String> list = new ArrayList<>();

@@ -32,10 +32,12 @@ public class GankFragmentPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         Fragment fragment;
         String title = titles.get(position);
-//        if (!"ALL".equals(title)) {
-//            fragment = CategoryListFragment.newInstance(title);
-//        }
-        fragment = CategoryListFragment.newInstance(title);
+
+        if (position == 0) {
+            fragment = CategoryListFragment.newInstance(title, true);
+        } else {
+            fragment = CategoryListFragment.newInstance(title, false);
+        }
         return fragment;
     }
 

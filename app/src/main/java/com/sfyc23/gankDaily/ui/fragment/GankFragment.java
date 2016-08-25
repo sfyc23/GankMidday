@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.sfyc23.gankDaily.R;
 import com.sfyc23.gankDaily.android.BaseFragment;
+import com.sfyc23.gankDaily.logic.network.Apis;
 import com.sfyc23.gankDaily.ui.adapter.GankFragmentPagerAdapter;
 import com.sfyc23.gankDaily.ui.model.GankModel;
 
@@ -48,7 +49,9 @@ public class GankFragment extends BaseFragment {
     protected void initViews(Bundle savedInstanceState) {
         pagerAdapter = new GankFragmentPagerAdapter(mContext.getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
+        viewPager.setOffscreenPageLimit(Apis.getGanHuoCateGory().size());
         tabLayout.setupWithViewPager(viewPager);
+
 
     }
 

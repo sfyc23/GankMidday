@@ -29,7 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected ProgressDialog mProgressDialog;
 //    private static final boolean DEBUG_ACTIVITY_LIFECYCLE = BaseApplication.isDEBUG;
 
-    private static final boolean DEBUG_ACTIVITY_LIFECYCLE = true;
+    private static final boolean DEBUG_ACTIVITY_LIFECYCLE = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

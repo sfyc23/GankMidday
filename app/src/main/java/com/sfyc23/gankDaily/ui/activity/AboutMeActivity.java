@@ -20,13 +20,13 @@ import butterknife.BindView;
  */
 public class AboutMeActivity extends BaseActivity {
 
-    @BindView(R.id.tv_version)
+    @BindView(R.id.tv_about_version)
     TextView mTvVersion;
-    @BindView(R.id.toolbar)
+    @BindView(R.id.toolbar_about)
     Toolbar mToolbar;
-    @BindView(R.id.collapsing_toolbar)
+    @BindView(R.id.collapsing_toolbar_about)
     CollapsingToolbarLayout mCollapsingToolbarLayout;
-    @BindView(R.id.appbar)
+    @BindView(R.id.appbar_about)
     AppBarLayout mAppbar;
     @BindView(R.id.main_content)
     CoordinatorLayout mainContent;

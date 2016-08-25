@@ -22,33 +22,14 @@ allprojects {
         minSdkVersion = 15
         targetSdkVersion = 22
 
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "0.8"
 
 
         CHANNEL_VALUE = "dubug"
 
-        //正式release打包1
-        PRINT_LOG_VALUE = "false"
-        SCHEDULER_DEBUG_VALUE = "false"
-        PLATFORM_VERSION_VALUE = "v14"
-        PLATFORM_TEST_VALUE = "false"
-        PLATFORM_DEBUG_VALUE = "false"
-        PLATFORM_ENCRYPT_VALUE = "true"
 
-        //debug 模式下打包
-        DEBUG_PRINT_LOG_VALUE = "true"
-        //使用正式服务器还是测试服务器，true 表示使用测试服务器
-        DEBUG_SCHEDULER_DEBUG_VALUE = "true"
-        //资源包版本号
-        DEBUG_PLATFORM_VERSION_VALUE = "v14"
-
-        //定义上值的Debug或release环境
-        DEBUG_PLATFORM_DEBUG_VALUE = "false"
-        //是否需要加密
-        DEBUG_PLATFORM_ENCRYPT_VALUE = "true"
-
-//        因为没有测试环境。dubug与zhouyang一致。
+        //github下载导入的，需要把这下面的删除
         debug_filestore = "../build-system/sfyc23.keystore"
         debug_storePassword = "sfyc23"
         debug_keyAlias = "sfyc23"

@@ -3,7 +3,6 @@ package com.sfyc23.gankDaily.ui.adapter;
 import android.content.Context;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.sfyc23.gankDaily.R;
 import com.sfyc23.gankDaily.logic.model.GanHuoDataBean;
 import com.sfyc23.gankDaily.logic.ui.adapter.CommonRvAdapter;

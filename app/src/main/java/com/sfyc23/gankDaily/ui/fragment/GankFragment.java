@@ -25,9 +25,9 @@ import butterknife.ButterKnife;
 public class GankFragment extends BaseFragment {
 
 
-    @BindView(R.id.sliding_tabs)
+    @BindView(R.id.tablayout_gank)
     TabLayout tabLayout;
-    @BindView(R.id.gank_view_pager)
+    @BindView(R.id.view_pager_gank)
     ViewPager viewPager;
 
     private GankFragmentPagerAdapter pagerAdapter;
@@ -46,11 +46,6 @@ public class GankFragment extends BaseFragment {
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-//        gankModels = new ArrayList<>();
-//        gankModels.add(new GankModel("Android",CategoryListFragment.newInstance("Android")));
-//        gankModels.add(new GankModel("IOS",new GankModelFragment()));
-//        gankModels.add(new GankModel("瞎推荐",new GankModelFragment()));
-//        gankModels.add(new GankModel("前端",new GankModelFragment()));
         pagerAdapter = new GankFragmentPagerAdapter(mContext.getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);

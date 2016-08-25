@@ -5,20 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-   <!-- <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        >
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlways"
-            android:background="#30469b"
-            app:title="技术"
-            />
-    </android.support.design.widget.AppBarLayout>-->
     <include layout="@layout/toolbar" />
 
     <com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager

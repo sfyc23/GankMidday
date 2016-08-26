@@ -21,8 +21,8 @@ public class Apis {
 //    public static String[] GanHuoCateGory = new String[]{"all", "Android", "iOS", "拓展资源", "前端", "瞎推荐"};
     public static String[] GanHuoCateGory = new String[]{"Android", "iOS", "拓展资源", "前端", "瞎推荐"};
     public static List<String> getGanHuoCateGory() {
-
         List<String> list = new ArrayList<>();
+        //想做成一个可以自定义类型，顺序的接口
         String prefCategory = PrefUtils.getString(PrefUtils.HOME_CATEGORY);
         if (!CommonUtils.isValid(prefCategory)) {
             for (int i = 0; i < GanHuoCateGory.length; i++) {

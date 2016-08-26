@@ -1,7 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 apply plugin: 'com.getkeepsafe.dexcount'
-
+//当前系统时间
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
@@ -13,10 +16,52 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
     }
+    signingConfigs {
+
+        debug_Config {
+            storeFile file(rootProject.ext.debug_filestore)
+            storePassword rootProject.ext.debug_storePassword
+            keyAlias rootProject.ext.debug_keyAlias
+            keyPassword rootProject.ext.debug_keyPassword
+        }
+
+        release_Config {
+            storeFile file(rootProject.ext.release_filestore)
+            storePassword rootProject.ext.release_storePassword
+            keyAlias rootProject.ext.release_keyAlias
+            keyPassword rootProject.ext.release_keyPassword
+        }
+    }
     buildTypes {
-        release {
+        debug {
+            buildConfigField "boolean", "DEBUG_MODE", "true"
+            signingConfig signingConfigs.debug_Config
+            zipAlignEnabled false
             minifyEnabled false
+            debuggable true
+        }
+        release {
+
+            buildConfigField "boolean", "DEBUG_MODE", "false"
+
+            minifyEnabled false
+            signingConfig signingConfigs.release_Config
+            zipAlignEnabled true
+//            minifyEnabled true
+            shrinkResources true
+//            proguardFile 'proguard.cfg'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = "gank_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
+
         }
     }
 

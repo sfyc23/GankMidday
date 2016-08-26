@@ -9,11 +9,6 @@ import rx.Observable;
 import rx.functions.Func1;
 import rx.functions.Func2;
 
-/**
- * Created by _SOLID
- * Date:2016/7/27
- * Time:21:38
- */
 public class RetryWhenNetworkException implements Func1<Observable<? extends Throwable>, Observable<?>> {
     private int count = 3;//retry count
     private long delay = 3000;//delay time

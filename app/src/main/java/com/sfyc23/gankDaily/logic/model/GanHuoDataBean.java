@@ -6,17 +6,17 @@ import java.io.Serializable;
  * Created by leilei on 2016/8/22.
  */
 public class GanHuoDataBean implements Serializable {
-
     private static final long serialVersionUID = 3372572626243920572L;
-    private String _id;
-    private String createdAt;
-    private String desc;
-    private String publishedAt;
-    private String source;
-    private String type;
-    private String url;
-    private boolean used;
-    private String who;
+
+    public String _id;
+    public String createdAt;
+    public String desc;
+    public String publishedAt;
+    public String source;
+    public String type;
+    public String url;
+    public boolean used;
+    public String who;
 
     public String get_id() {
         return _id;

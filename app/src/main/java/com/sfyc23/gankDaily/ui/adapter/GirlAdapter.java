@@ -27,7 +27,6 @@ public class GirlAdapter  extends CommonRvAdapter<GanHuoDataBean> {
 
     @Override
     public void getItemView(ViewHolder holder, GanHuoDataBean bean, int position) {
-//        HttpClientManager.displayImage(imageView, bean.getUrl());
         ImageView girlIv = holder.getView(R.id.iv_item_girl);
 //        Glide.with(mContext)
 //                .load(bean.getUrl())
@@ -35,6 +34,6 @@ public class GirlAdapter  extends CommonRvAdapter<GanHuoDataBean> {
 ////                .placeholder(R.drawable)
 //                .crossFade()
 //                .into(girlIv);
-        Picasso.with(mContext).load(bean.getUrl()).placeholder(R.drawable.ic_launcher).into(girlIv);
+        Picasso.with(mContext).load(bean.getUrl()).into(girlIv);
     }
 }

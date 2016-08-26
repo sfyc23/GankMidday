@@ -17,11 +17,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by _SOLID
- * Date:2016/7/27
- * Time:15:23
- */
 public class ServiceFactory {
 
     private static volatile ServiceFactory instance = null;
@@ -34,13 +29,6 @@ public class ServiceFactory {
                 .create();
     }
 
-//    private static class SingletonHolder {
-//        private static final ServiceFactory INSTANCE = new ServiceFactory();
-//    }
-//
-////    public static ServiceFactory getInstance() {
-////        return SingletonHolder.INSTANCE;
-////    }
 
     public static ServiceFactory getInstance() {
         if (instance == null) {

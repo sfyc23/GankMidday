@@ -113,7 +113,7 @@
                 android:background="@drawable/bg_card_nopic">
 
                 <ImageView
-                    android:id="@+id/ig_about_avatar"
+                    android:id="@+id/iv_about_avatar"
                     android:layout_width="@dimen/avatar_size"
                     android:layout_height="@dimen/avatar_size"
                     android:layout_margin="16dp"
@@ -123,9 +123,9 @@
                     android:id="@+id/tv_about_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/ig_about_avatar"
-                    android:layout_toEndOf="@id/ig_about_avatar"
-                    android:layout_toRightOf="@id/ig_about_avatar"
+                    android:layout_alignTop="@id/iv_about_avatar"
+                    android:layout_toEndOf="@id/iv_about_avatar"
+                    android:layout_toRightOf="@id/iv_about_avatar"
                     android:text="sfyc23"
                     android:textColor="@color/md_grey_800"
                     tools:ignore="HardcodedText"/>
@@ -134,8 +134,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_about_name"
-                    android:layout_toEndOf="@id/ig_about_avatar"
-                    android:layout_toRightOf="@id/ig_about_avatar"
+                    android:layout_toEndOf="@id/iv_about_avatar"
+                    android:layout_toRightOf="@id/iv_about_avatar"
                     android:text="@string/about_developer_and_designer"
                     android:textColor="@color/md_grey_600"/>
 

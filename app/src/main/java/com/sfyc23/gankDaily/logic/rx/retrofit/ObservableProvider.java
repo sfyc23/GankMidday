@@ -14,21 +14,12 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
-/**
- * Created by _SOLID
- * Date:2016/7/28
- * Time:9:22
- */
 public class ObservableProvider {
     private static volatile ObservableProvider instance = null;
     private CommonService mCommonService;
     private ObservableProvider() {
         mCommonService = ServiceFactory.getInstance().createService(CommonService.class);
     }
-
-//    private static class DefaultHolder {
-//        private static ObservableProvider INSTANCE = new ObservableProvider();
-//    }
 
     public static ObservableProvider getDefault() {
         if (instance == null) {
@@ -41,9 +32,6 @@ public class ObservableProvider {
         return instance;
     }
 
-//    public static ObservableProvider getDefault() {
-//        return DefaultHolder.INSTANCE;
-//    }
 
     public Observable<String> loadString(String url) {
         return mCommonService

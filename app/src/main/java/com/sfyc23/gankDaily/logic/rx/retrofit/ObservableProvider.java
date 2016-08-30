@@ -75,5 +75,9 @@ public class ObservableProvider {
 
     }
 
+    public void cancel(){
+
+    }
+
 
 }

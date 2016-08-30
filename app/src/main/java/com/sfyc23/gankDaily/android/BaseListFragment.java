@@ -1,5 +1,6 @@
 package com.sfyc23.gankDaily.android;
 
+import android.database.Observable;
 import android.support.v7.widget.RecyclerView;
 
 import com.sfyc23.gankDaily.base.utils.LogUtil;
@@ -9,16 +10,16 @@ import com.sfyc23.gankDaily.logic.ui.adapter.CommonRvAdapter;
 import java.util.List;
 
 import rx.Subscriber;
+import rx.Subscription;
 
 /**
  * Created by leilei on 2016/8/22.
  */
-public abstract class BaseListFragment<T> extends BaseLazyFragment{
+public abstract class BaseListFragment<T> extends BaseLazyFragment {
 
     protected static final int ACTION_REFRESH = 1;//刷新
     protected static final int ACTION_LOAD_MORE = 2;//加载更多
     protected static final int ACTION_PRE_LOAD = 3;//预加载数据
-
 
 
     protected CommonRvAdapter<T> mAdapter;
@@ -31,7 +32,7 @@ public abstract class BaseListFragment<T> extends BaseLazyFragment{
         mAdapter = setAdapter();
     }
 
-
+    protected Subscription mSubscription;
 
     /**
      * load data(obtain data from local if no network)
@@ -50,7 +51,7 @@ public abstract class BaseListFragment<T> extends BaseLazyFragment{
 
     private void loadDataFromNetWork(String reqUrl) {
         LogUtil.e("reqUrl = " + reqUrl);
-        ObservableProvider.getDefault().loadString(reqUrl)
+        mSubscription = ObservableProvider.getDefault().loadString(reqUrl)
                 .subscribe(new Subscriber<String>() {
                     @Override
                     public void onCompleted() {
@@ -71,8 +72,8 @@ public abstract class BaseListFragment<T> extends BaseLazyFragment{
                     }
 
                 });
-
     }
+
     protected void switchActionAndLoadData(int action) {
         mCurrentAction = action;
         switch (mCurrentAction) {
@@ -135,5 +136,11 @@ public abstract class BaseListFragment<T> extends BaseLazyFragment{
 
     protected abstract void loadComplete();
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mSubscription != null) {
+            mSubscription.unsubscribe();
+        }
+    }
 }

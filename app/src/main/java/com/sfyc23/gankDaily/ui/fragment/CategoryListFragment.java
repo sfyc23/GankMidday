@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sfyc23.gankDaily.base.ui.UiThreadHandler;
 import com.sfyc23.gankDaily.logic.ui.adapter.CommonRvAdapter;
 import com.sfyc23.gankDaily.android.XRecyclerViewFragment;
 import com.sfyc23.gankDaily.base.utils.json.JsonConvert;
@@ -41,7 +42,13 @@ public class CategoryListFragment extends XRecyclerViewFragment<GanHuoDataBean> 
         mBeginLoad = getArguments().getBoolean("beginLoad");
         if(mBeginLoad){
             mStatusView.showLoading();
-            loadData();
+            UiThreadHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    loadData();
+                }
+            },500);
+
         }
     }
 

@@ -10,11 +10,6 @@ import android.widget.FrameLayout;
 
 import com.sfyc23.gankDaily.R;
 
-/**
- * Created by _SOLID
- * Date:2016/7/8
- * Time:10:36
- */
 public class StatusView extends FrameLayout {
 
     private View mLoadingView;
@@ -58,6 +53,7 @@ public class StatusView extends FrameLayout {
                 }
             }
         });
+        showEmpty();
     }
 
     public void setOnRetryListener(OnClickListener listener) {

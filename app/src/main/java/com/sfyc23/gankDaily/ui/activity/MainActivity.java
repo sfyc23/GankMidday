@@ -3,6 +3,7 @@ package com.sfyc23.gankDaily.ui.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -12,6 +13,8 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 import com.sfyc23.gankDaily.R;
+import com.sfyc23.gankDaily.android.ActivityController;
+import com.sfyc23.gankDaily.android.ActivityHelper;
 import com.sfyc23.gankDaily.android.BaseActivity;
 import com.sfyc23.gankDaily.android.BaseFragment;
 import com.sfyc23.gankDaily.ui.adapter.BottomViewPagerAdapter;
@@ -143,4 +146,21 @@ public class MainActivity extends BaseActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    long mExitTime = 0;
+
+    @Override
+    public void onBackPressed() {
+        if ((System.currentTimeMillis() - mExitTime) > 2000) {
+            Snackbar.make(bottomNavigation, "再按一下退出",
+                    Snackbar.LENGTH_SHORT).show();
+            mExitTime = System.currentTimeMillis();
+        } else {
+            super.onBackPressed();
+            ActivityHelper.exitAll();
+            ActivityController.finishAll();
+            finish();
+        }
+    }
+
 }

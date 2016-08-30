@@ -69,6 +69,7 @@ public abstract class BaseListFragment<T> extends BaseLazyFragment{
                         }
                         onDataSuccessReceived(result);
                     }
+
                 });
 
     }

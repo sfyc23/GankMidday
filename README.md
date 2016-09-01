@@ -9,3 +9,8 @@
 
 ----------
 ##截图##
+![妹子](https://github.com/sfyc23/GankDaily/blob/master/screenshots/girls.jpg)![home](https://github.com/sfyc23/GankDaily/blob/master/screenshots/home.jpg)![关于](https://github.com/sfyc23/GankDaily/blob/master/screenshots/about.jpg)
+
+##感谢##
+drakeet  [MeiZhi]( https:github.com/drakeet/Meizhi)
+burgessjp [burgessjp]( https:github.com/burgessjp/GanHuoIO)

@@ -18,6 +18,6 @@ public class MyApplication extends BaseApplication {
         super.isDEBUG = BuildConfig.DEBUG;
         LogUtil.setDebug(isDEBUG);
 
-        ObservableProvider.getDefault();
+        ObservableProvider.getInstance();
     }
 }

@@ -21,7 +21,7 @@ public class ObservableProvider {
         mCommonService = ServiceFactory.getInstance().createService(CommonService.class);
     }
 
-    public static ObservableProvider getDefault() {
+    public static ObservableProvider getInstance() {
         if (instance == null) {
             synchronized (ObservableProvider.class) {
                 if (instance == null) {

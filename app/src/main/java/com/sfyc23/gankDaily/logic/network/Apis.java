@@ -9,13 +9,6 @@ import com.sfyc23.gankDaily.base.utils.PrefUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-/**
- * Created by _SOLID
- * Date:2016/5/16
- * Time:16:13
- */
 public class Apis {
 
 //    public static String[] GanHuoCateGory = new String[]{"all", "Android", "iOS", "拓展资源", "前端", "瞎推荐"};

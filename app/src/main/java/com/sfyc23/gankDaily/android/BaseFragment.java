@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
+import com.sfyc23.gankDaily.base.utils.LogUtil;
 import com.sfyc23.gankDaily.logic.rx.RxBus;
 
 import butterknife.ButterKnife;
@@ -64,13 +65,14 @@ public abstract class BaseFragment extends Fragment {
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    public void onDestroy() {
+        super.onDestroy();
         unBinder.unbind();
-        if (mSubscription != null && mSubscription.isUnsubscribed())
+        if (mSubscription != null && !mSubscription.isUnsubscribed()){
             mSubscription.unsubscribe();
-    }
+        }
 
+    }
 
     protected void handleRxMsg(String msg) {
 

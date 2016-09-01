@@ -1,6 +1,5 @@
 package com.sfyc23.gankDaily.android;
 
-import android.database.Observable;
 import android.support.v7.widget.RecyclerView;
 
 import com.sfyc23.gankDaily.base.utils.LogUtil;
@@ -11,6 +10,7 @@ import java.util.List;
 
 import rx.Subscriber;
 import rx.Subscription;
+import rx.observers.SafeSubscriber;
 
 /**
  * Created by leilei on 2016/8/22.
@@ -51,11 +51,15 @@ public abstract class BaseListFragment<T> extends BaseLazyFragment {
 
     private void loadDataFromNetWork(String reqUrl) {
         LogUtil.e("reqUrl = " + reqUrl);
-        mSubscription = ObservableProvider.getDefault().loadString(reqUrl)
+        mSubscription = ObservableProvider.getInstance().loadString(reqUrl)
                 .subscribe(new Subscriber<String>() {
                     @Override
                     public void onCompleted() {
-
+//                        try {
+//                            Thread.sleep(3000);//睡5秒,延迟一下
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
                     }
 
                     @Override
@@ -70,7 +74,6 @@ public abstract class BaseListFragment<T> extends BaseLazyFragment {
                         }
                         onDataSuccessReceived(result);
                     }
-
                 });
     }
 
@@ -139,8 +142,11 @@ public abstract class BaseListFragment<T> extends BaseLazyFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mSubscription != null) {
+        LogUtil.e("isUnsubscribed before = " + mSubscription.isUnsubscribed());
+        if (mSubscription != null && !mSubscription.isUnsubscribed()) {
             mSubscription.unsubscribe();
+            LogUtil.e("isUnsubscribed after = " + mSubscription.isUnsubscribed());
         }
+
     }
 }

@@ -31,6 +31,8 @@ import butterknife.BindView;
  */
 public class MainActivity extends BaseActivity {
 
+    private static final String TAG = "MainActivity";
+    
     @BindView(R.id.view_pager)
     AHBottomNavigationViewPager viewPager;
     @BindView(R.id.bottom_navigation)
@@ -57,6 +59,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initVariables() {
+        Intent intent = new Intent();
 
 
     }
@@ -128,6 +131,11 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void loadData() {
 
+    }
+
+    @Override
+    protected boolean supportSlideBack() {
+        return false;
     }
 
     @Override

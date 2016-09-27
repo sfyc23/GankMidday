@@ -101,6 +101,11 @@ public class PictureActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected boolean supportSlideBack() {
+        return false;
+    }
+
     protected void hideOrShowToolbar() {
         mAppBar.animate()
                 .translationY(mIsHidden ? 0 : -mAppBar.getHeight())

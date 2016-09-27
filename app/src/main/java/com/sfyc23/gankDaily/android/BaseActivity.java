@@ -17,6 +17,7 @@ import android.view.View;
 
 import com.sfyc23.gankDaily.R;
 import com.sfyc23.gankDaily.base.utils.LogUtil;
+import com.sfyc23.gankDaily.logic.widget.swipeback.SwipeWindowHelper;
 
 import butterknife.ButterKnife;
 
@@ -27,9 +28,9 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends AppCompatActivity {
     protected Context mContext;
     protected ProgressDialog mProgressDialog;
-//    private static final boolean DEBUG_ACTIVITY_LIFECYCLE = BaseApplication.isDEBUG;
 
     private static final boolean DEBUG_ACTIVITY_LIFECYCLE = false;
+    private SwipeWindowHelper mSwipeWindowHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract void loadData();
 
+    protected abstract boolean supportSlideBack();
 
     public void showLoadingDialog() {
         showLoadingDialog(getString(R.string.common_loading));
@@ -81,8 +83,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     public void showLoadingDialog(String msg, boolean cancelFalg) {
         if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(
-                    getTopParent((Activity) mContext));
+            mProgressDialog = new ProgressDialog(mContext);
         }
         mProgressDialog.setCanceledOnTouchOutside(cancelFalg);
         mProgressDialog.setMessage(msg);
@@ -98,14 +99,18 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    private Context getTopParent(Activity context) {
-        Activity parent = context.getParent();
-        while (parent != null) {
-            context = parent;
-            parent = context.getParent();
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if(!supportSlideBack()) {
+            return super.dispatchTouchEvent(ev);
         }
-        return context;
+
+        if(mSwipeWindowHelper == null) {
+            mSwipeWindowHelper = new SwipeWindowHelper(getWindow());
+        }
+        return mSwipeWindowHelper.processTouchEvent(ev) || super.dispatchTouchEvent(ev);
     }
+
 
     @Override
     protected void onDestroy() {

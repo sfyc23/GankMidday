@@ -63,6 +63,8 @@ android {
             }
 
         }
+
+
     }
 
     productFlavors {
@@ -83,6 +85,10 @@ android {
     dexOptions {
         javaMaxHeapSize "4g"
         incremental true
+//        dexInProcess true
+//        preDexLibraries true
+//        javaMaxHeapSize "4g"//越大越好
+//        incremental true
     }
 
 }

@@ -65,4 +65,9 @@ public class AboutMeActivity extends BaseActivity {
     protected void loadData() {
 
     }
+
+    @Override
+    protected boolean supportSlideBack() {
+        return true;
+    }
 }

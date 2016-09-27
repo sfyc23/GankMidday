@@ -64,7 +64,8 @@ public class WebViewActivity extends BaseActivity {
     protected void initViewsAndEvents(Bundle savedInstanceState) {
         //设置Toolbar
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mToolbar.setTitle(mTitle);
+
+
         setSupportActionBar(mToolbar);
         getSupportActionBar().setHomeButtonEnabled(true);//决定左上角的图标是否可以点击
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);//决定左上角图标的右侧是否有向左的小箭头
@@ -76,6 +77,7 @@ public class WebViewActivity extends BaseActivity {
                 finish();
             }
         });
+        mToolbar.setTitle(mTitle+mTitle);
 
         WebSettings settings = mWebView.getSettings();
 
@@ -110,6 +112,12 @@ public class WebViewActivity extends BaseActivity {
     protected void loadData() {
 
     }
+
+    @Override
+    protected boolean supportSlideBack() {
+        return true;
+    }
+
     //WebViewClient就是帮助WebView处理各种通知、请求事件的。
     class MyWebViewClient extends WebViewClient {
 

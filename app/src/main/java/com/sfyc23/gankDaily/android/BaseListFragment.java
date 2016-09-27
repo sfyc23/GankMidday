@@ -142,11 +142,11 @@ public abstract class BaseListFragment<T> extends BaseLazyFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        LogUtil.e("isUnsubscribed before = " + mSubscription.isUnsubscribed());
-        if (mSubscription != null && !mSubscription.isUnsubscribed()) {
-            mSubscription.unsubscribe();
-            LogUtil.e("isUnsubscribed after = " + mSubscription.isUnsubscribed());
-        }
+//        LogUtil.e("isUnsubscribed before = " + mSubscription.isUnsubscribed());
+//        if (mSubscription != null && !mSubscription.isUnsubscribed()) {
+//            mSubscription.unsubscribe();
+//            LogUtil.e("isUnsubscribed after = " + mSubscription.isUnsubscribed());
+//        }
 
     }
 }

@@ -51,8 +51,6 @@ public class GankFragment extends BaseFragment {
         viewPager.setAdapter(pagerAdapter);
         viewPager.setOffscreenPageLimit(Apis.getGanHuoCateGory().size());
         tabLayout.setupWithViewPager(viewPager);
-
-
     }
 
     @Override

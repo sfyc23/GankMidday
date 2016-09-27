@@ -17,7 +17,7 @@
         app:layout_collapseMode="pin"
         app:layout_scrollFlags="scroll|enterAlways"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:contentInsetStartWithNavigation="0dp"
         app:titleTextColor="@color/white" />
-
 
 </android.support.design.widget.AppBarLayout>

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -77,7 +78,7 @@ public class WebViewActivity extends BaseActivity {
                 finish();
             }
         });
-        mToolbar.setTitle(mTitle+mTitle);
+        mToolbar.setTitle(mTitle);
 
         WebSettings settings = mWebView.getSettings();
 

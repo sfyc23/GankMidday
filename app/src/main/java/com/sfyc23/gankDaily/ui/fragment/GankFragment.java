@@ -2,6 +2,7 @@ package com.sfyc23.gankDaily.ui.fragment;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+//import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,7 @@ public class GankFragment extends BaseFragment {
         return fragment;
     }
 
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_gank;
@@ -47,6 +49,7 @@ public class GankFragment extends BaseFragment {
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
+//        ViewCompat
         pagerAdapter = new GankFragmentPagerAdapter(mContext.getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
         viewPager.setOffscreenPageLimit(Apis.getGanHuoCateGory().size());

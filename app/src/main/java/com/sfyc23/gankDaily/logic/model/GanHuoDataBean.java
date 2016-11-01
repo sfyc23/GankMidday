@@ -17,6 +17,21 @@ public class GanHuoDataBean implements Serializable {
     public String url;
     public boolean used;
     public String who;
+    public String[] images;
+
+//    _id: "57b1323c421aa96004f4ba39",
+//    createdAt: "2016-08-15T11:08:44.341Z",
+//    desc: "Android Studio plugin makes easy to search text in strings resources.",
+//    images: [
+//            "http://img.gank.io/ddf3b5a6-59e4-443d-82ec-4ba83b4dab2e"
+//            ],
+//    publishedAt: "2016-08-16T11:22:38.139Z",
+//    source: "chrome",
+//    type: "Android",
+//    url: "https://github.com/konifar/android-strings-search-plugin",
+//    used: true,
+//    who: "Masayuki Suda"
+
 
     public String get_id() {
         return _id;

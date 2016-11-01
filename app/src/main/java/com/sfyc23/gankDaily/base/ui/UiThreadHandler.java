@@ -66,7 +66,6 @@ public class UiThreadHandler {
 		if (uiHandler == null) {
 			return false;
 		}
-
 		return uiHandler.postDelayed(new ReleaseRunnable(r), delayMillis);
 	}
 

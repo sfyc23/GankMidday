@@ -8,6 +8,12 @@
     <string name="main_bottom_girl">妹子</string>
     <string name="main_bottom_video">视频</string>
 
+
+    <string name="search">搜索</string>
+    <string name="search_hint">老司机之路</string>
+
+
+
     <string name="action_about">「关于」页面</string>
     <string name="about_app_name_introduce">代码&amp;妹子 \n 面向对象面向君\n不负代码不负卿</string>
     <string name="introduce_and_help">介绍与帮助</string>
@@ -18,6 +24,8 @@
         \nburgessjp  - https:github.com/burgessjp/GanHuoIO
         \n\n我的 GitHub: https:github.com/sfyc23
     </string>
+
+
 
     <string name="about_developers">开发人员</string>
     <string name="about_developer_and_designer">主要 Android 开发 &amp; 设计</string>
@@ -69,4 +77,6 @@
     com.squareup.picasso:picasso:2.5.2\n
 
     </string>
+
+
 </resources>

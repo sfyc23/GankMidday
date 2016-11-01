@@ -272,7 +272,8 @@ public class StickyScrollView extends NestedScrollView {
             super.onTouchEvent(down);
             hasNotDoneActionDown = false;
         }
-        if (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_CANCEL) {
+        if (ev.getAction() == MotionEvent.ACTION_UP
+                || ev.getAction() == MotionEvent.ACTION_CANCEL) {
             hasNotDoneActionDown = true;
         }
         return super.onTouchEvent(ev);

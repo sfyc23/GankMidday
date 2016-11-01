@@ -15,6 +15,10 @@ android {
         versionName rootProject.ext.versionName
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
     }
     signingConfigs {
 
@@ -35,10 +39,13 @@ android {
     buildTypes {
         debug {
             buildConfigField "boolean", "DEBUG_MODE", "true"
+
             signingConfig signingConfigs.debug_Config
             zipAlignEnabled false
             minifyEnabled false
             debuggable true
+
+            applicationIdSuffix '.debug'
         }
         release {
 
@@ -46,22 +53,22 @@ android {
 
             minifyEnabled false
             signingConfig signingConfigs.release_Config
-            zipAlignEnabled true
+//            zipAlignEnabled true
+            debuggable false
 //            minifyEnabled true
-            shrinkResources true
 //            proguardFile 'proguard.cfg'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            applicationVariants.all { variant ->
-                variant.outputs.each { output ->
-                    def outputFile = output.outputFile
-                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                        def fileName = "gank_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
-                        output.outputFile = new File(outputFile.parent, fileName)
-                    }
+
+        }
+        applicationVariants.all { variant ->
+            variant.outputs.each { output ->
+                def outputFile = output.outputFile
+                if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                    def fileName = "gank_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+                    output.outputFile = new File(outputFile.parent, fileName)
                 }
             }
-
         }
 
 
@@ -107,7 +114,6 @@ allprojects {
         }
     }
 }
-1617
 
 
 dependencies {
@@ -165,7 +171,14 @@ dependencies {
 
     //图片加载
     compile 'com.github.chrisbanes:PhotoView:1.2.6'
-//    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
 //    compile 'com.github.chrisbanes:PhotoView:1.2.3'
+//    compile 'me.leolin:ShortcutBadger:1.1.10@aar'
+
+    compile 'com.tencent.bugly:crashreport:2.1.5'
+    compile 'com.tencent.bugly:nativecrashreport:2.2.0'
+
+
+
 }

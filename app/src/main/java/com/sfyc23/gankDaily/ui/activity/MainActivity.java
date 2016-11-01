@@ -1,5 +1,6 @@
 package com.sfyc23.gankDaily.ui.activity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
@@ -21,10 +23,12 @@ import com.sfyc23.gankDaily.ui.adapter.BottomViewPagerAdapter;
 import com.sfyc23.gankDaily.ui.fragment.GankFragment;
 import com.sfyc23.gankDaily.ui.fragment.GirlFragment;
 import com.sfyc23.gankDaily.ui.fragment.VideoFragment;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
+//import me.leolin.shortcutbadger.ShortcutBadger;
 
 /**
  * Created by leilei on 2016/8/16.
@@ -32,7 +36,9 @@ import butterknife.BindView;
 public class MainActivity extends BaseActivity {
 
     private static final String TAG = "MainActivity";
-    
+
+    private static final int RC_SEARCH = 0;
+
     @BindView(R.id.view_pager)
     AHBottomNavigationViewPager viewPager;
     @BindView(R.id.bottom_navigation)
@@ -60,17 +66,15 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initVariables() {
         Intent intent = new Intent();
-
-
     }
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mToolbar.setTitle("技术");
+//        setActionBar(mToolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);//决定左上角图标的右侧是否有向左的小箭头
-        setSupportActionBar(mToolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(false);//决定左上角图标的右侧是否有向左的小箭头
+//        setSupportActionBar(mToolbar);
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(
                 R.string.main_bottom_gank,
@@ -91,8 +95,8 @@ public class MainActivity extends BaseActivity {
 
         bottomNavigation.addItems(bottomNavigationItems);
 //        bottomNavigation.setColored(true);
-        bottomNavigation.setAccentColor(ContextCompat.getColor(mContext,R.color.md_red_500));
-        bottomNavigation.setInactiveColor(ContextCompat.getColor(mContext,R.color.md_cyan_500));
+        bottomNavigation.setAccentColor(ContextCompat.getColor(mContext, R.color.md_red_500));
+        bottomNavigation.setInactiveColor(ContextCompat.getColor(mContext, R.color.md_cyan_500));
 
 
         ArrayList<BaseFragment> fragments = new ArrayList<>();
@@ -101,7 +105,7 @@ public class MainActivity extends BaseActivity {
         fragments.add(VideoFragment.newInstance());
 
         viewPager.setOffscreenPageLimit(3);
-        adapter = new BottomViewPagerAdapter(getSupportFragmentManager(),fragments);
+        adapter = new BottomViewPagerAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(adapter);
 
         currentFragment = adapter.getCurrentFragment();
@@ -109,7 +113,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean onTabSelected(int position, boolean wasSelected) {
                 viewPager.setCurrentItem(position, false);
-                switch (position){
+                switch (position) {
                     case 0:
                         mToolbar.setTitle(R.string.main_bottom_gank);
                         break;
@@ -151,6 +155,17 @@ public class MainActivity extends BaseActivity {
             case R.id.action_about:
                 startActivity(new Intent(this, AboutMeActivity.class));
                 return true;
+            case R.id.menu_search:
+                View searchMenuView = mToolbar.findViewById(R.id.menu_search);
+                int[] loc = new int[2];
+                searchMenuView.getLocationOnScreen(loc);
+                startActivityForResult(SearchActivity.createStartIntent(this, loc[0], loc[0] +
+                        (searchMenuView.getWidth() / 2)), RC_SEARCH, ActivityOptions
+                        .makeSceneTransitionAnimation(this).toBundle());
+                searchMenuView.setAlpha(0f);
+                return true;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -171,4 +186,18 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case RC_SEARCH:
+                // reset the search icon which we hid
+                View searchMenuView = mToolbar.findViewById(R.id.menu_search);
+                if (searchMenuView != null) {
+                    searchMenuView.setAlpha(1f);
+                }
+                break;
+
+
+        }
+    }
 }

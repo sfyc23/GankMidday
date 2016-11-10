@@ -123,6 +123,7 @@ public class NineGridImageView<T> extends ViewGroup {
             childrenView.layout(left, top, right, bottom);
         }
     }
+
     public void setImagesData(T[] ts) {
         if (ts != null && ts.length > 0) {
             setImagesData(Arrays.asList(ts));
@@ -201,8 +202,8 @@ public class NineGridImageView<T> extends ViewGroup {
                 mImageViewList.add(imageView);
                 imageView.setOnClickListener(new OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        mAdapter.onItemImageClick(getContext(), position, mImgDataList);
+                    public void onClick(View view) {
+                        mAdapter.onItemImageClick(getContext(), view, position, mImgDataList);
                     }
                 });
                 return imageView;

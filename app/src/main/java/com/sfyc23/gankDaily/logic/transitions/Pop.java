@@ -34,9 +34,9 @@ import com.sfyc23.gankDaily.base.utils.AnimUtils;
  */
 public class Pop extends Visibility {
 
-    private static final String PROPNAME_ALPHA = "plaid:pop:alpha";
-    private static final String PROPNAME_SCALE_X = "plaid:pop:scaleX";
-    private static final String PROPNAME_SCALE_Y = "plaid:pop:scaleY";
+    private static final String PROPNAME_ALPHA = "gank:pop:alpha";
+    private static final String PROPNAME_SCALE_X = "gank:pop:scaleX";
+    private static final String PROPNAME_SCALE_Y = "gank:pop:scaleY";
 
     private static final String[] transitionProperties = {
             PROPNAME_ALPHA,

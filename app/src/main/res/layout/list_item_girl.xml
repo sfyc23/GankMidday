@@ -5,11 +5,13 @@
     android:layout_margin="6dp"
     android:background="@color/white">
 
-    <ImageView
+    <com.sfyc23.gankDaily.logic.widget.ForegroundImageView
         android:id="@+id/iv_item_girl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contentDescription="Girl"
+        android:transitionName="@string/app_name"
+        android:foreground="@drawable/mid_grey_ripple"
         android:elevation="16dp"
         android:scaleType="centerCrop" />
 </RelativeLayout>

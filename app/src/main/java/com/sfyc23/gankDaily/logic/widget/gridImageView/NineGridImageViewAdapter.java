@@ -15,12 +15,12 @@ import java.util.List;
 public abstract class NineGridImageViewAdapter<T> {
     protected abstract void onDisplayImage(Context context, ImageView imageView, T t);
 
-    protected void onItemImageClick(Context context, int index, List<T> list) {
+    protected void onItemImageClick(Context context, View view, int index, List<T> list) {
     }
 
     protected ImageView generateImageView(Context context) {
 //        ImageView imageView = new ImageView(context);
-        ImageView imageView = (ImageView) View.inflate(context,R.layout.list_item_mid_image,null);
+        ImageView imageView = (ImageView) View.inflate(context, R.layout.list_item_mid_image, null);
 //        ForegroundImageView imageView = new ForegroundImageView(context);
 //        imageView.setForeground(context.getResources().getDrawable(R.drawable.mid_grey_ripple,null));
 //        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);

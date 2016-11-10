@@ -3,6 +3,7 @@ package com.sfyc23.gankDaily.android;
 import android.content.Context;
 
 import com.sfyc23.gankDaily.BuildConfig;
+import com.sfyc23.gankDaily.base.utils.DbUtils;
 import com.sfyc23.gankDaily.base.utils.LogUtil;
 import com.sfyc23.gankDaily.logic.rx.retrofit.ObservableProvider;
 import com.sfyc23.gankDaily.logic.widget.swipeback.ActivityLifecycleHelper;
@@ -25,6 +26,7 @@ public class MyApplication extends BaseApplication {
         ObservableProvider.getInstance();
         CrashReport.initCrashReport(sContext, "36fa395465", true);
         registerActivityLifecycleCallbacks(mActivityLifecycleHelper = new ActivityLifecycleHelper());
+        DbUtils.init(getApplicationContext());
     }
     public ActivityLifecycleHelper getActivityLifecycleHelper() {
         return mActivityLifecycleHelper;

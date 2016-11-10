@@ -47,6 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initVariables();
         initViewsAndEvents(savedInstanceState);
+        initToolBar();
         loadData();
     }
 
@@ -60,6 +61,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initViewsAndEvents(Bundle savedInstanceState);
 
     protected abstract void loadData();
+
+    public abstract void initToolBar();
 
     protected abstract boolean supportSlideBack();
 

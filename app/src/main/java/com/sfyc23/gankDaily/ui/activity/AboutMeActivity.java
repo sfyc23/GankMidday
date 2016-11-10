@@ -50,7 +50,12 @@ public class AboutMeActivity extends BaseActivity {
     protected void initViewsAndEvents(Bundle savedInstanceState) {
         mTvVersion.setText("Version " + BuildConfig.VERSION_NAME);
         mCollapsingToolbarLayout.setTitle(getString(R.string.app_name));
+    }
 
+
+
+    @Override
+    public void initToolBar() {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {

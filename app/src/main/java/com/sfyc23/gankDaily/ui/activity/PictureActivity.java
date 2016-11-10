@@ -10,8 +10,11 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.sfyc23.gankDaily.R;
 import com.sfyc23.gankDaily.android.BaseActivity;
+import com.sfyc23.gankDaily.logic.widget.statusBar.StatusBarUtil;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -24,7 +27,7 @@ public class PictureActivity extends BaseActivity {
 
     public static final String EXTRA_IMAGE_URL = "image_url";
     public static final String EXTRA_IMAGE_TITLE = "image_title";
-    public static final String TRANSIT_PIC = "picture";
+
 
     String mImageUrl, mImageTitle;
     @BindView(R.id.iv_picture)
@@ -37,7 +40,7 @@ public class PictureActivity extends BaseActivity {
 
     PhotoViewAttacher mPhotoViewAttacher;
 
-    public static Intent newIntent(Context context, String url, String desc) {
+    public static Intent createStartIntent(Context context, String url, String desc) {
         Intent intent = new Intent(context, PictureActivity.class);
         intent.putExtra(PictureActivity.EXTRA_IMAGE_URL, url);
         intent.putExtra(PictureActivity.EXTRA_IMAGE_TITLE, desc);
@@ -63,25 +66,10 @@ public class PictureActivity extends BaseActivity {
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
 
-        ViewCompat.setTransitionName(mIvPicture, TRANSIT_PIC);
-        Picasso.with(this).load(mImageUrl).into(mIvPicture);
-//        setAppBarAlpha(0.7f);
-//        mAppBar.setAlpha(0.7f);
-//        setTitle(mImageTitle);
+
         setupPhotoAttacher();
 
-        mToolbar.setTitle("图片");
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);//决定左上角的图标是否可以点击
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);//决定左上角图标的右侧是否有向左的小箭头
-        setSupportActionBar(mToolbar);
-        mToolbar.setNavigationIcon(R.drawable.ic_back);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+
     }
 
     private void setupPhotoAttacher() {
@@ -98,7 +86,26 @@ public class PictureActivity extends BaseActivity {
 
     @Override
     protected void loadData() {
+        Picasso.with(this).load(mImageUrl).into(mIvPicture);
+//        Glide.with(this).load(mImageUrl)
+//                .placeholder(R.drawable.ic_launcher)
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .into(mIvPicture);
+    }
 
+    @Override
+    public void initToolBar() {
+        mToolbar.setTitle("图片");
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);//决定左上角的图标是否可以点击
+        setSupportActionBar(mToolbar);
+        mToolbar.setNavigationIcon(R.drawable.ic_back);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -107,6 +114,11 @@ public class PictureActivity extends BaseActivity {
     }
 
     protected void hideOrShowToolbar() {
+        if (mIsHidden) {
+            StatusBarUtil.hideStatusBar(this);
+        } else {
+            StatusBarUtil.displayStatusBar(this);
+        }
         mAppBar.animate()
                 .translationY(mIsHidden ? 0 : -mAppBar.getHeight())
                 .setInterpolator(new DecelerateInterpolator(2))

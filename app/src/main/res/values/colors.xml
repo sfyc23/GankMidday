@@ -50,9 +50,11 @@
     <color name="dark_icon_half_alpha">#4d000000</color> <!-- 30% black-->
     <color name="dark_icon_on_primary">#ff2a6046</color> <!-- 60% black on @color/primary -->
 
-    <color name="immersive_bars">#99000000</color>
+    <!--<color name="immersive_bars">#99000000</color>-->
+    <color name="immersive_bars">#03A9F4</color>
 
     <color name="background_super_dark">#ff292929</color>
+    <color name="background_light">#fafafa</color> <!-- grey 50 -->
 
     <array name="loading_placeholders_dark">
         <item>#ff191919</item>

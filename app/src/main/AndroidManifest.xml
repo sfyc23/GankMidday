@@ -42,7 +42,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.PictureActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Photo"/>
         <activity
             android:name=".ui.activity.AboutMeActivity"
             android:screenOrientation="portrait" />
@@ -52,10 +53,10 @@
             android:screenOrientation="portrait" />
 
 
-        <!-- 友盟 开始 -->
+        <!-- 友盟 开始 ${UMENG_CHANNEL_VALUE}-->
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="${UMENG_CHANNEL_VALUE}"></meta-data>
+            android:value="hello"></meta-data>
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="571d7f9de0f55a92b40010c7"></meta-data>

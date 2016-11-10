@@ -63,22 +63,6 @@ public class WebViewActivity extends BaseActivity {
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
-        //设置Toolbar
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-
-
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);//决定左上角的图标是否可以点击
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);//决定左上角图标的右侧是否有向左的小箭头
-        setSupportActionBar(mToolbar);
-        mToolbar.setNavigationIcon(R.drawable.ic_back);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        mToolbar.setTitle(mTitle);
 
         WebSettings settings = mWebView.getSettings();
 
@@ -112,6 +96,23 @@ public class WebViewActivity extends BaseActivity {
     @Override
     protected void loadData() {
 
+    }
+
+    @Override
+    public void initToolBar() {
+        //设置Toolbar
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle(mTitle);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);//决定左上角的图标是否可以点击
+        mToolbar.setNavigationIcon(R.drawable.ic_back);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        mToolbar.setTitle(mTitle);
     }
 
     @Override

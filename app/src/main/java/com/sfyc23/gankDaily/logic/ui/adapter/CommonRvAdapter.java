@@ -1,5 +1,6 @@
 package com.sfyc23.gankDaily.logic.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
@@ -22,9 +23,11 @@ public abstract class CommonRvAdapter<T>  extends
     protected List<T> mDatas;
     protected Context mContext;
 
-    public CommonRvAdapter(Context context, List<T> datas) {
+
+    public CommonRvAdapter(Context context,List<T> datas) {
         mContext = context;
         mDatas = datas == null ? new ArrayList<T>() : new ArrayList<T>(datas);
+
     }
 
     private OnItemClickListener mOnItemClickListener;

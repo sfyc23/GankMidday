@@ -156,7 +156,7 @@ public class CommonUtils {
 	 * @param view
 	 * @param delayedTime the delay millisecond
 	 */
-	public static void showSoftKeyboard(final View view, int delayedTime) {
+	public static void showSoftKeyboard(final View view, long delayedTime) {
 		view.postDelayed(new Runnable() {
 			@Override
 			public void run() {

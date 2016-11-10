@@ -35,12 +35,15 @@ import com.sfyc23.gankDaily.android.BaseActivity;
 import com.sfyc23.gankDaily.base.utils.AnimUtils;
 import com.sfyc23.gankDaily.base.utils.CommonUtils;
 import com.sfyc23.gankDaily.base.utils.ViewUtils;
+import com.sfyc23.gankDaily.logic.rx.RxBus;
 import com.sfyc23.gankDaily.ui.adapter.CategoryAdapter;
 
 import butterknife.BindDimen;
 import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.OnClick;
+import rx.Subscription;
+import rx.functions.Action1;
 
 /**
  * Author :leilei on 2016/11/1 1755.
@@ -91,6 +94,8 @@ public class SearchActivity extends BaseActivity {
 
     private CategoryAdapter adapter;
     private boolean dismissing;
+
+    protected Subscription mSubscription;
 
     public static Intent createStartIntent(Context context, int menuIconLeft, int menuIconCenterX) {
         Intent starter = new Intent(context, SearchActivity.class);
@@ -190,11 +195,25 @@ public class SearchActivity extends BaseActivity {
                 return false;
             }
         });
+
+        mSubscription = RxBus.getInstance().toObserverable(String.class).subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+//                handleRxMsg(s);
+            }
+        });
+
+
         onNewIntent(getIntent());
     }
 
     @Override
     protected void loadData() {
+        CommonUtils.showSoftKeyboard(searchView, 500L);
+    }
+
+    @Override
+    public void initToolBar() {
 
     }
 
@@ -232,6 +251,7 @@ public class SearchActivity extends BaseActivity {
                 return true;
             }
         });
+
 //        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
 //            @Override
 //            public void onFocusChange(View v, boolean hasFocus) {
@@ -343,6 +363,11 @@ public class SearchActivity extends BaseActivity {
 //        setNoResultsVisibility(View.GONE);
     }
 
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        dismiss();
+    }
 
     @Override
     protected boolean supportSlideBack() {

@@ -40,7 +40,7 @@ public abstract class BaseFragment extends Fragment {
         int layoutId = getLayoutId();
         if (layoutId == 0)
             return null;
-        mView = inflater.inflate(getLayoutId(), container, false);
+        mView = inflater.inflate(layoutId, container, false);
         mContext = getActivity();
         mSubscription = RxBus.getInstance().toObserverable(String.class).subscribe(new Action1<String>() {
             @Override

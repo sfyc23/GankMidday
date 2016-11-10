@@ -6,7 +6,9 @@ import android.view.View;
 
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.litesuits.orm.LiteOrm;
 import com.sfyc23.gankDaily.R;
+import com.sfyc23.gankDaily.base.utils.DbUtils;
 import com.sfyc23.gankDaily.base.utils.LogUtil;
 import com.sfyc23.gankDaily.base.utils.StringUtils;
 import com.sfyc23.gankDaily.logic.rx.retrofit.TransformUtils;
@@ -21,7 +23,7 @@ import rx.Subscriber;
 /**
  * Created by leilei on 2016/8/22.
  */
-public abstract class XRecyclerViewFragment <T> extends BaseListFragment {
+public abstract class XRecyclerViewFragment<T> extends BaseListFragment {
 
     private static String TAG = "XRecyclerViewFragment";
 
@@ -30,6 +32,8 @@ public abstract class XRecyclerViewFragment <T> extends BaseListFragment {
 
     @BindView(R.id.status_view)
     public StatusView mStatusView;
+
+    public LiteOrm liteOrm = DbUtils.getLiteOrm();
 
     @Override
     protected int getLayoutId() {
@@ -77,14 +81,21 @@ public abstract class XRecyclerViewFragment <T> extends BaseListFragment {
 
     @Override
     protected void lazyLoad() {
-        mStatusView.showLoading();
-        loadData();
+        if (mAdapter != null && mAdapter.getItemCount() > 0) {
+            mRecyclerView.setRefreshing(true);
+        } else {
+            mStatusView.showLoading();
+            loadData();
+        }
+
     }
 
     @Override
     protected void onDataErrorReceived() {
         LogUtil.i(TAG, "onDataErrorReceived");
-        mStatusView.showError();
+        if (mAdapter == null || mAdapter.getItemCount() == 0) {
+            mStatusView.showError();
+        }
         loadComplete();
     }
 
@@ -113,7 +124,9 @@ public abstract class XRecyclerViewFragment <T> extends BaseListFragment {
                         @Override
                         public void onError(Throwable e) {
                             e.printStackTrace();
-                            mStatusView.showError();
+                            if (mAdapter == null || mAdapter.getItemCount() == 0) {
+                                mStatusView.showError();
+                            }
                         }
 
                         @Override
@@ -139,8 +152,10 @@ public abstract class XRecyclerViewFragment <T> extends BaseListFragment {
     protected void loadComplete() {
         if (mCurrentAction == ACTION_REFRESH)
             mRecyclerView.refreshComplete();
-        if (mCurrentAction == ACTION_LOAD_MORE)
+        if (mCurrentAction == ACTION_LOAD_MORE) {
             mRecyclerView.loadMoreComplete();
+        }
+
     }
 
     protected int getHeadViewCount() {

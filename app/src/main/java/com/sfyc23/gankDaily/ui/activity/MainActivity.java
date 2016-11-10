@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ActionMenuView;
+import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
@@ -19,6 +21,7 @@ import com.sfyc23.gankDaily.android.ActivityController;
 import com.sfyc23.gankDaily.android.ActivityHelper;
 import com.sfyc23.gankDaily.android.BaseActivity;
 import com.sfyc23.gankDaily.android.BaseFragment;
+import com.sfyc23.gankDaily.base.utils.AnimUtils;
 import com.sfyc23.gankDaily.ui.adapter.BottomViewPagerAdapter;
 import com.sfyc23.gankDaily.ui.fragment.GankFragment;
 import com.sfyc23.gankDaily.ui.fragment.GirlFragment;
@@ -48,7 +51,7 @@ public class MainActivity extends BaseActivity {
 
     private BaseFragment currentFragment;
     private BottomViewPagerAdapter adapter;
-
+    private int mBottomPosition = 0;
 
     private ArrayList<AHBottomNavigationItem>
             bottomNavigationItems = new ArrayList<>();
@@ -70,11 +73,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setActionBar(mToolbar);
-        setSupportActionBar(mToolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(false);//决定左上角图标的右侧是否有向左的小箭头
-//        setSupportActionBar(mToolbar);
+
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(
                 R.string.main_bottom_gank,
@@ -101,8 +100,8 @@ public class MainActivity extends BaseActivity {
 
         ArrayList<BaseFragment> fragments = new ArrayList<>();
         fragments.add(GankFragment.newInstance());
-        fragments.add(GirlFragment.newInstance());
-        fragments.add(VideoFragment.newInstance());
+        fragments.add(GirlFragment.newInstance("福利"));
+        fragments.add(VideoFragment.newInstance("休息视频"));
 
         viewPager.setOffscreenPageLimit(3);
         adapter = new BottomViewPagerAdapter(getSupportFragmentManager(), fragments);
@@ -112,16 +111,24 @@ public class MainActivity extends BaseActivity {
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
             @Override
             public boolean onTabSelected(int position, boolean wasSelected) {
+                if (mBottomPosition == position) {
+                    return false;
+                } else {
+                    mBottomPosition = position;
+                }
                 viewPager.setCurrentItem(position, false);
                 switch (position) {
                     case 0:
                         mToolbar.setTitle(R.string.main_bottom_gank);
+                        animateToolbar();
                         break;
                     case 1:
                         mToolbar.setTitle(R.string.main_bottom_girl);
+                        animateToolbar();
                         break;
                     case 2:
                         mToolbar.setTitle(R.string.main_bottom_video);
+                        animateToolbar();
                         break;
                     default:
                         break;
@@ -135,6 +142,15 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void loadData() {
 
+    }
+
+    @Override
+    public void initToolBar() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle(R.string.main_bottom_gank);
+        setSupportActionBar(mToolbar);
+        mToolbar.setTitle(R.string.main_bottom_gank);
+        animateToolbar();
     }
 
     @Override
@@ -185,6 +201,27 @@ public class MainActivity extends BaseActivity {
             finish();
         }
     }
+
+    private void animateToolbar() {
+        // this is gross but toolbar doesn't expose it's children to animate them :(
+        View t = mToolbar.getChildAt(0);
+        if (t != null && t instanceof TextView) {
+            TextView title = (TextView) t;
+
+            // fade in and space out the title.  Animating the letterSpacing performs horribly so
+            // fake it by setting the desired letterSpacing then animating the scaleX ¯\_(ツ)_/¯
+            title.setAlpha(0.6f);
+            title.setScaleX(0.8f);
+            title.animate()
+                    .alpha(1f)
+                    .scaleX(1f)
+                    .setStartDelay(300)
+                    .setDuration(900)
+                    .setInterpolator(AnimUtils.getFastOutSlowInInterpolator(this));
+        }
+
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

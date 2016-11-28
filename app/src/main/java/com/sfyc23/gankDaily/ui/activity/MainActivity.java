@@ -2,7 +2,6 @@ package com.sfyc23.gankDaily.ui.activity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -10,7 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ActionMenuView;
 import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
@@ -26,7 +24,6 @@ import com.sfyc23.gankDaily.ui.adapter.BottomViewPagerAdapter;
 import com.sfyc23.gankDaily.ui.fragment.GankFragment;
 import com.sfyc23.gankDaily.ui.fragment.GirlFragment;
 import com.sfyc23.gankDaily.ui.fragment.VideoFragment;
-import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.ArrayList;
 
@@ -73,7 +70,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
-
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(
                 R.string.main_bottom_gank,
@@ -142,6 +138,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void loadData() {
 
+//        checkUpdate(false,false);
     }
 
     @Override
@@ -206,18 +203,35 @@ public class MainActivity extends BaseActivity {
         // this is gross but toolbar doesn't expose it's children to animate them :(
         View t = mToolbar.getChildAt(0);
         if (t != null && t instanceof TextView) {
-            TextView title = (TextView) t;
+            final TextView title = (TextView) t;
 
             // fade in and space out the title.  Animating the letterSpacing performs horribly so
             // fake it by setting the desired letterSpacing then animating the scaleX ¯\_(ツ)_/¯
             title.setAlpha(0.6f);
             title.setScaleX(0.8f);
+            title.setScaleY(0.8f);
             title.animate()
                     .alpha(1f)
                     .scaleX(1f)
+                    .scaleY(1f)
                     .setStartDelay(300)
                     .setDuration(900)
                     .setInterpolator(AnimUtils.getFastOutSlowInInterpolator(this));
+    /*        ObjectAnimator anim = ObjectAnimator.ofFloat(title, "new_title", 0.6f, 1.2f, 1.0f);
+
+            anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+
+                @Override
+                public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                    Float animFaction = (Float) valueAnimator.getAnimatedValue();
+                    title.setScaleX(animFaction);
+                    title.setScaleY(animFaction);
+                }
+            });
+            anim.setDuration(900);
+            anim.setStartDelay(300);*/
+//            anim1.start();
         }
 
     }

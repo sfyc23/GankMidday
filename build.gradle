@@ -22,23 +22,12 @@ allprojects {
         minSdkVersion = 21
         targetSdkVersion = 24
 
-        versionCode = 3
-        versionName = "0.8.1"
+        versionCode = 4
+        versionName = "0.9"
 
 
         CHANNEL_VALUE = "dubug"
 
-
-        //github下载导入的，需要把这下面的删除
-        debug_filestore = "../build-system/sfyc23.keystore"
-        debug_storePassword = "sfyc23"
-        debug_keyAlias = "sfyc23"
-        debug_keyPassword = "sfyc23"
-
-        release_filestore = "../build-system/sfyc23.keystore"
-        release_storePassword = "sfyc23"
-        release_keyAlias = "sfyc23"
-        release_keyPassword = "sfyc23"
 
     }
 }

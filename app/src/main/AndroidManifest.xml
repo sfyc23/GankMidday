@@ -51,7 +51,9 @@
             android:name=".ui.activity.SearchActivity"
             android:theme="@style/AppTheme.Translucent.Search"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:theme="@android:style/Theme.Translucent" />
 
         <!-- 友盟 开始 ${UMENG_CHANNEL_VALUE}-->
         <meta-data
